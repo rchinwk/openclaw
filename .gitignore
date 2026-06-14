@@ -1,0 +1,6 @@
+.env
+data/backups/
+data/openclaw-home/
+workspace/.git/
+workspace/.openclaw/
+*.log

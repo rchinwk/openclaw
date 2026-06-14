@@ -1,0 +1,18 @@
+services:
+  aida:
+    image: ${OPENCLAW_IMAGE:-ghcr.io/openclaw/openclaw:latest}
+    container_name: aida-openclaw
+    restart: unless-stopped
+    env_file:
+      - .env
+    command:
+      - gateway
+      - --port
+      - "${OPENCLAW_GATEWAY_PORT:-18789}"
+    ports:
+      - "127.0.0.1:${OPENCLAW_GATEWAY_PORT:-18789}:18789"
+    volumes:
+      - ./data/openclaw-home:/home/openclaw/.openclaw
+      - ./workspace:/home/openclaw/.openclaw/workspace
+      - ./config:/srv/aida/config:ro
+      - ./scripts:/srv/aida/scripts:ro

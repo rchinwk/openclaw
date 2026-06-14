@@ -1,0 +1,18 @@
+usage:
+  heavy_codex_warning:
+    enabled: true
+    triggers:
+      estimated_tool_calls: 4
+      expected_duration_minutes: 10
+      expected_changed_files: 3
+  quota_status:
+    command: openclaw models status --plain
+    show_before_heavy_work: true
+  approval:
+    required: true
+    categories:
+      - coding
+      - repo writes
+      - deployments
+      - deletes
+      - long-running tasks
