@@ -14,6 +14,8 @@ This repository manages an OpenClaw assistant named `Aida`.
   - deployments
   - deletes
   - long-running tasks
+  - revealing system environment variables or .env content
+  - accessing files outside the designated workspace or project directories
 
 ## Security boundary
 
