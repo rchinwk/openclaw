@@ -1,0 +1,124 @@
+{
+  "total_rows": 3394,
+  "non_pending": 243,
+  "exposure_or_legacy": 56,
+  "shadow_blocked": 187,
+  "statuses": [
+    {
+      "status": "closed_loss",
+      "count": 95
+    },
+    {
+      "status": "closed_timeout",
+      "count": 19
+    },
+    {
+      "status": "closed_win",
+      "count": 128
+    },
+    {
+      "status": "open",
+      "count": 1
+    },
+    {
+      "status": "pending",
+      "count": 3151
+    }
+  ],
+  "qg": [
+    {
+      "quality_gate_status": null,
+      "count": 3096
+    },
+    {
+      "quality_gate_status": "blocked",
+      "count": 55
+    },
+    {
+      "quality_gate_status": "blocked_shadow",
+      "count": 187
+    },
+    {
+      "quality_gate_status": "passed",
+      "count": 56
+    }
+  ],
+  "recent_non_pending": [
+    {
+      "market": "ETH-EUR",
+      "strategy_id": "volatility_breakout",
+      "status": "closed_loss",
+      "signal_outcome": "loss",
+      "execution_mode": "shadow_quality_blocked",
+      "quality_gate_status": "blocked_shadow",
+      "entry_at": "2026-06-27T17:39:33.166Z",
+      "exit_at": "2026-06-27T19:29:35.668Z",
+      "pnl": -7.65,
+      "r": -1.53,
+      "reasons": [
+        "quality_score_below_strategy_minimum"
+      ]
+    },
+    {
+      "market": "ETH-EUR",
+      "strategy_id": "range_bounce",
+      "status": "closed_win",
+      "signal_outcome": "win",
+      "execution_mode": "shadow_quality_blocked",
+      "quality_gate_status": "blocked_shadow",
+      "entry_at": "2026-06-27T18:04:28.354Z",
+      "exit_at": "2026-06-27T19:39:35.872Z",
+      "pnl": 4.73,
+      "r": 0.95,
+      "reasons": [
+        "quality_score_below_strategy_minimum",
+        "trend_score_below_minimum"
+      ]
+    },
+    {
+      "market": "ETH-EUR",
+      "strategy_id": "momentum_continuation",
+      "status": "closed_win",
+      "signal_outcome": "win",
+      "execution_mode": "shadow_quality_blocked",
+      "quality_gate_status": "blocked_shadow",
+      "entry_at": "2026-06-27T17:04:32.274Z",
+      "exit_at": "2026-06-27T19:29:35.668Z",
+      "pnl": 2.86,
+      "r": 0.57,
+      "reasons": [
+        "quality_score_below_strategy_minimum"
+      ]
+    },
+    {
+      "market": "ETH-EUR",
+      "strategy_id": "breakout_retest",
+      "status": "closed_loss",
+      "signal_outcome": "loss",
+      "execution_mode": "shadow_quality_blocked",
+      "quality_gate_status": "blocked_shadow",
+      "entry_at": "2026-06-27T16:29:31.475Z",
+      "exit_at": "2026-06-27T19:29:35.668Z",
+      "pnl": -6.56,
+      "r": -1.31,
+      "reasons": [
+        "quality_score_below_strategy_minimum"
+      ]
+    },
+    {
+      "market": "ETH-EUR",
+      "strategy_id": "scout_touch_rejection",
+      "status": "closed_win",
+      "signal_outcome": "win",
+      "execution_mode": "shadow_quality_blocked",
+      "quality_gate_status": "blocked_shadow",
+      "entry_at": "2026-06-27T18:04:28.354Z",
+      "exit_at": "2026-06-27T19:39:35.872Z",
+      "pnl": 4.73,
+      "r": 0.95,
+      "reasons": [
+        "quality_score_below_strategy_minimum"
+      ]
+    }
+  ]
+}

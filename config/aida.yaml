@@ -2,10 +2,10 @@ assistant:
   name: Aida
   role: AI Digital Assistant
   channel: Telegram
-  default_model: openai/gpt-5.5
+  default_model: openai/gpt-5.4
   preferred_family: GPT-5.x Codex
   fallbacks:
-    - openai/gpt-5.4
+    - openai/gpt-5.5
     - openai/gpt-5.4-mini
 persona:
   tone:

@@ -6,7 +6,7 @@ This directory contains the local deployment assets for `Aida`, an OpenClaw-base
 
 - Host install: `openclaw` CLI `2026.6.6`
 - Auth: OpenAI OAuth via ChatGPT Plus/Pro account
-- Default model: `openai/gpt-5.5`
+- Default model: `openai/gpt-5.4`
 - Gateway bind: `127.0.0.1:18789`
 - Service manager: `systemd --user`
 - Telegram mode: DM pairing by default
