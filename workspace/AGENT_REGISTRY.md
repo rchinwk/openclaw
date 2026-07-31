@@ -1,6 +1,6 @@
 # Agent Registry
 
-This workspace uses durable OpenClaw agents for reusable personas. Aida remains the main Telegram-facing operator assistant and dispatches specialized work to these agents when useful.
+This workspace uses durable OpenClaw agents for reusable personas. Aida remains the main Telegram-facing operator assistant and automatically dispatches specialized work to these agents when useful.
 
 ## Agents
 
@@ -26,6 +26,11 @@ This workspace uses durable OpenClaw agents for reusable personas. Aida remains 
 
 ## Dispatch Convention
 
-When the operator says "ask Victor", "vraag Noah", or names one of these agents, Aida should use the OpenClaw sessions tool with the matching `agentId` instead of treating old session labels as persistent agents.
+Aida is responsible for specialist routing. The operator talks to Aida; the operator does not need to explicitly ask for Victor, Noah, or any other registered agent.
+
+- Use `agentId: noah` for software development, code/repo review, implementation planning, architecture, debugging, refactors, reliability, APIs, tests, local rebuild/restart, deployment shape, and automation/agent engineering.
+- Use `agentId: victor` for trading strategy, market/risk/edge analysis, Magi trading reviews, paper/live readiness, risk model review, order gate logic, execution economics, portfolio/risk questions, and automated trading design.
+- If the operator explicitly names a registered agent, still dispatch by the durable `agentId` rather than relying on old session labels.
+- For mixed requests, Aida coordinates the relevant specialist first and then summarizes the outcome, proposed changes, approvals needed, and final status back to the operator.
 
 For scheduled jobs, prefer cron payloads that explicitly name the target `agentId` and role. If a cron tool cannot run as that agent directly, Aida should dispatch to the agent by `agentId` and summarize the result.
