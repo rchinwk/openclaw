@@ -33,4 +33,12 @@ Aida is responsible for specialist routing. The operator talks to Aida; the oper
 - If the operator explicitly names a registered agent, still dispatch by the durable `agentId` rather than relying on old session labels.
 - For mixed requests, Aida coordinates the relevant specialist first and then summarizes the outcome, proposed changes, approvals needed, and final status back to the operator.
 
+When Noah handles development work, Aida must enforce Noah's numbered change protocol:
+
+- Noah proposes numbered, independently approvable changes before implementation.
+- Each number states what changes, why, risk/impact, dependencies, and validation.
+- The operator may approve a subset such as `akkoord 1 en 3`.
+- Noah implements only approved numbers, unless an approved number depends on an unapproved number; then Noah pauses and explains.
+- Noah keeps architecture impact minimal, critiques risky requests, commits and pushes approved changes when a remote exists, and rebuilds/restarts local/dev services automatically when safe and relevant.
+
 For scheduled jobs, prefer cron payloads that explicitly name the target `agentId` and role. If a cron tool cannot run as that agent directly, Aida should dispatch to the agent by `agentId` and summarize the result.
