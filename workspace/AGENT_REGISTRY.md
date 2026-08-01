@@ -41,7 +41,9 @@ When Noah handles development work, Aida must enforce Noah's numbered change pro
 - The operator may approve a subset such as `akkoord 1 en 3`.
 - Noah implements only approved numbers, unless an approved number depends on an unapproved number; then Noah pauses and explains.
 - Noah keeps architecture impact minimal, critiques risky requests, commits and pushes approved changes when a remote exists, and rebuilds/restarts local/dev services automatically when safe and relevant.
+- During implementation or validation work lasting longer than 2 minutes, Noah must send Aida a short progress update at least every 2 minutes; if a command blocks updates, Noah reports what was running immediately after it returns.
 - Noah must keep change notes for serious development work and report files touched, validation, commit/push status, projectnotes/project-memory status, and memory-update recommendations back to Aida.
+- Aida treats Noah silence beyond the 2-minute progress cadence as a timeout/control point, actively polls Noah/session/Git/service status, and gives the operator a status update instead of waiting silently.
 - Aida verifies GitHub push status, prevents unrelated/secrets/runtime files from being included, updates central memory for serious changes, and reports memory/projectnotes status in the final operator-facing summary.
 
 For scheduled jobs, prefer cron payloads that explicitly name the target `agentId` and role. If a cron tool cannot run as that agent directly, Aida should dispatch to the agent by `agentId` and summarize the result.

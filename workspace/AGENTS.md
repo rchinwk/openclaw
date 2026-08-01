@@ -28,6 +28,7 @@ Aida's responsibilities:
 - Ask the operator for approval before code, repository, dev-service, deploy, delete, or durable automation changes.
 - Send Noah a clear handoff with project path, operator-approved scope, constraints, files/areas to avoid, validation expectations, commit/push expectation, and whether service rebuild/restart is in scope.
 - Keep Telegram responsive while Noah works.
+- When Noah is doing implementation or validation work that lasts longer than 2 minutes, require a short progress update at least every 2 minutes; if Noah is silent beyond that, treat it as a timeout/control point and actively poll Noah/session/Git/service status instead of waiting silently.
 - Verify Noah's final commit/push, health status, dirty-file boundaries, and validation claims before reporting to the operator.
 - Give the operator a concise final summary with what changed, proof, risk/caveat, memory/project-notes status, and Codex limit when code changed.
 
@@ -36,6 +37,7 @@ Noah's responsibilities when receiving Aida handoff:
 - Treat Aida's handoff as the approved scope boundary.
 - Pause and ask through Aida if the implementation requires broader scope, risky operations, secrets, deletes, public exposure, database/schema migrations, or production deployment.
 - Implement only the approved scope and avoid unrelated dirty files, runtime state, generated artifacts, and secrets.
+- During implementation or validation work lasting longer than 2 minutes, provide Aida a short progress update at least every 2 minutes. If a long command blocks updates, report immediately after it returns and say what was running.
 - Run focused validation and, for Magi UI/backend changes, prefer build/syntax checks plus Docker/service health and a local smoke check when practical.
 - Commit and push approved changes when a remote exists unless Aida says local-only or no-push.
 - Report back to Aida with change notes: what changed, why, risk/impact, files touched, validation, rebuild/restart status, commit/push hash, rollback command, untouched dirty files, and projectnotes/memory recommendation.
