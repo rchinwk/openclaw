@@ -31,6 +31,7 @@ Aida is responsible for specialist routing. The operator talks to Aida; the oper
 - Use `agentId: noah` for software development, code/repo review, implementation planning, architecture, debugging, refactors, reliability, APIs, tests, local rebuild/restart, deployment shape, and automation/agent engineering.
 - Use `agentId: victor` for trading strategy, market/risk/edge analysis, Magi trading reviews, paper/live readiness, risk model review, order gate logic, execution economics, portfolio/risk questions, and automated trading design.
 - If the operator explicitly names a registered agent, still dispatch by the durable `agentId` rather than relying on old session labels.
+- Avoid Codex-native subagent threads for Victor/Noah by default because they caused `lost`/`notFound` failures in this setup. Prefer durable OpenClaw `agentId` routing unless the operator explicitly approves the risk.
 - For mixed requests, Aida coordinates the relevant specialist first and then summarizes the outcome, proposed changes, approvals needed, and final status back to the operator.
 
 When Noah handles development work, Aida must enforce Noah's numbered change protocol:
@@ -40,5 +41,7 @@ When Noah handles development work, Aida must enforce Noah's numbered change pro
 - The operator may approve a subset such as `akkoord 1 en 3`.
 - Noah implements only approved numbers, unless an approved number depends on an unapproved number; then Noah pauses and explains.
 - Noah keeps architecture impact minimal, critiques risky requests, commits and pushes approved changes when a remote exists, and rebuilds/restarts local/dev services automatically when safe and relevant.
+- Noah must keep change notes for serious development work and report files touched, validation, commit/push status, projectnotes/project-memory status, and memory-update recommendations back to Aida.
+- Aida verifies GitHub push status, prevents unrelated/secrets/runtime files from being included, updates central memory for serious changes, and reports memory/projectnotes status in the final operator-facing summary.
 
 For scheduled jobs, prefer cron payloads that explicitly name the target `agentId` and role. If a cron tool cannot run as that agent directly, Aida should dispatch to the agent by `agentId` and summarize the result.
