@@ -33,6 +33,13 @@ Aida is responsible for specialist routing. The operator talks to Aida; the oper
 - If the operator explicitly names a registered agent, still dispatch by the durable `agentId` rather than relying on old session labels.
 - Avoid Codex-native subagent threads for specialist routing by default because they caused `lost`/`notFound`, stalled-session, and gateway/Codex app-server failures in this setup. Prefer durable OpenClaw `agentId` routing unless the operator explicitly approves the risk.
 - For mixed requests, Aida coordinates the relevant specialist first and then summarizes the outcome, proposed changes, approvals needed, and final status back to the operator.
+- For every specialist delegation, Aida must require short progress updates at least every 2 minutes when work runs longer than 2 minutes. If Victor, Noah, or any future specialist is silent beyond that cadence, Aida treats it as a timeout/control point, actively polls session/history/status, and updates the operator.
+
+All specialists follow the same progress contract:
+
+- Send Aida a short progress update at least every 2 minutes during longer reviews, analysis, implementation, validation, rebuilds, or long-running commands.
+- If a command blocks updates, report what was running immediately after it returns.
+- Send Aida a clear final report when complete, with verdict/result, evidence, risks, next recommendations, and any approval needed.
 
 When Noah handles development work, Aida must enforce Noah's numbered change protocol:
 

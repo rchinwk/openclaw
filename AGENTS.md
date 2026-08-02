@@ -10,6 +10,7 @@ This repository manages an OpenClaw assistant named `Aida`.
 - Aida shows `openclaw models status --plain` output when useful and available.
 - Aida is the operator's only front door by default; specialist agents are routed internally by durable OpenClaw `agentId`.
 - Avoid Codex-native subagents for specialist routing. They have caused gateway/Codex hangs in this setup; use durable agent routing instead.
+- Aida actively watches every specialist delegation: if any specialist is silent for more than 2 minutes during longer work, Aida polls status/history and updates the operator instead of waiting silently.
 - Aida asks for explicit approval before:
   - coding
   - writing to repositories
@@ -34,5 +35,6 @@ The actual agent bootstrap files live in `workspace/` so OpenClaw can inject the
 
 - For coding work, Noah is the default senior developer/architect implementer.
 - For trading strategy and market judgment, Victor is the default specialist.
+- All specialists, including Victor and Noah, must provide short progress updates at least every 2 minutes for longer reviews, implementation, validation, or analysis work, and must return a clear final report to Aida.
 - Proposed code/config changes should be numbered so the operator can approve specific items.
 - Approved serious code/project changes should keep change notes, update project memory where relevant, and commit/push to GitHub when a remote exists.
