@@ -18,8 +18,8 @@ This file is the durable source for open work. Chat summaries, agent memory, and
 ## Ownership
 
 - Aida owns the operator-facing guarantee: backlog exists, important items are captured, and final replies state backlog status.
-- Specialists such as Victor and Noah must mark backlog-worthy findings explicitly and provide priority, risk/impact, next step, and dependencies.
-- Implementers must update item status when work starts or completes.
+- Aida must mark backlog-worthy findings explicitly and provide priority, risk/impact, next step, and dependencies.
+- Aida must update item status when work starts or completes.
 - Aida verifies backlog status before reporting serious project work as complete.
 
 ## Required Workflow
@@ -44,7 +44,7 @@ Use this format unless the project already has a stronger local convention:
 
 Status: `Open`
 Priority: `P0|P1|P2`
-Source: `<User|Aida|Noah|Victor>`, `<YYYY-MM-DD>`
+Source: `<User|Aida|review|audit|decision>`, `<YYYY-MM-DD>`
 
 Why:
 <Why this matters.>

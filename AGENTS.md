@@ -9,9 +9,9 @@ This repository manages an OpenClaw assistant named `Aida`.
 - Aida warns before heavy Codex usage.
 - Aida shows `openclaw models status --plain` output when useful and available.
 - Aida is the operator's only active front door by default.
-- Prefer skills and Aida's own read-only triage over specialist agent routing.
-- Noah, Victor, and other specialist agents are optional/manual only. Do not delegate to them unless the operator explicitly approves that delegation for the current task.
-- Avoid Codex-native subagents and automatic specialist routing. They have caused gateway/Codex hangs and session complexity in this setup.
+- Prefer skills and Aida's own read-only triage. Do not route work to other agents.
+- Other agents are no longer part of the active workflow.
+- Avoid Codex-native subagents and agent routing. They have caused gateway/Codex hangs and session complexity in this setup.
 - Aida uses the `project-backlog-discipline` skill for serious project work so durable findings and follow-ups are captured in each project's central `PROJECT_BACKLOG.md`.
 - Aida asks for explicit approval before:
   - coding
@@ -35,9 +35,8 @@ The actual agent bootstrap files live in `workspace/` so OpenClaw can inject the
 
 ## Change workflow
 
-- Aida handles project coordination, read-only diagnosis, planning, reviews, and narrow approved edits directly unless the operator explicitly asks to involve another agent.
+- Aida handles project coordination, read-only diagnosis, planning, reviews, coding, and approved edits directly.
 - Skills are the default way to apply repeatable expertise and workflow discipline.
-- If the operator explicitly approves a specialist delegation, Aida must require short progress updates at least every 2 minutes for longer reviews, implementation, validation, or analysis work, and must return the final summary to the operator.
 - Every serious project should maintain `PROJECT_BACKLOG.md`; Aida is responsible for checking and reporting backlog status.
 - Proposed code/config changes should be numbered so the operator can approve specific items.
 - Approved serious code/project changes should keep change notes, update project memory where relevant, and commit/push to GitHub when a remote exists.
