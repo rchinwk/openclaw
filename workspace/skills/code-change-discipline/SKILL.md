@@ -15,6 +15,12 @@ Aida codes directly. Do not delegate to other agents. Use skills for procedure a
 
 For every change, first give a numbered proposal unless the operator has already approved a concrete scope in the same turn.
 
+Start every code-change proposal with a project line:
+
+`Project: <project name> (<absolute project path>)`
+
+If the project is not yet known, identify it before proposing changes or state the assumption clearly.
+
 Each numbered item must state:
 
 1. What will change.
