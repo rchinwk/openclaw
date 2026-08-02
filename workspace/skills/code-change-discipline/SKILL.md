@@ -41,6 +41,20 @@ The operator may approve individual numbers. Implement only approved numbers. If
 - Pause before secrets, `.env`, deletes, public exposure, production deploys, database/schema migrations, paid/external services, or long-running tasks.
 - For serious project work, check the project backlog before editing and keep it current as part of the same change. Add missing backlog items for discovered follow-ups, update active/completed item status, or record why no backlog change is needed.
 
+## TradingView / Lightweight Charts Rule
+
+When working on TradingView-like charts built with `lightweight-charts`, do not force complex visual overlays into chart series or price-scale labels when the requested result needs TradingView-style subtle zones, exact label placement, or rich overlay composition.
+
+Default to the proven project pattern used in Magi-15:
+
+- keep candles, indicators, and true price lines in `lightweight-charts`;
+- draw visual inspection overlays with a transparent SVG layer above the chart;
+- use chart coordinate helpers such as `timeToCoordinate` and `priceToCoordinate` to align SVG shapes to candles/prices;
+- keep Support/Resistance and realtime price on the right price scale when requested;
+- draw liquidity, FVG, order blocks, supply/demand, volume profile, and similar inspection labels inside the SVG overlay so they can stay subtle and off the price scale.
+
+If an existing project already has a better chart-overlay convention, follow that local convention. Otherwise, strongly prefer an SVG overlay layer for advanced TradingView-like overlays.
+
 ## After Approved Implementation
 
 1. Run focused validation: tests, build, syntax checks, health checks, or the closest practical equivalent.
