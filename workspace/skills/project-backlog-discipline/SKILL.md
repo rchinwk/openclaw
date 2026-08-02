@@ -15,12 +15,15 @@ Every serious project should have one central backlog file at the project root:
 
 This file is the durable source for open work. Chat summaries, agent memory, and scattered docs are not enough.
 
+For every serious project change, Aida must either update the project's central backlog or explicitly report why no backlog change was needed. If a backlog-worthy item is discovered during implementation, validation, review, debugging, or cleanup, it must be added before the work is reported complete.
+
 ## Ownership
 
 - Aida owns the operator-facing guarantee: backlog exists, important items are captured, and final replies state backlog status.
 - Aida must mark backlog-worthy findings explicitly and provide priority, risk/impact, next step, and dependencies.
 - Aida must update item status when work starts or completes.
 - Aida verifies backlog status before reporting serious project work as complete.
+- Aida may not close a serious project change with only a chat summary; the final state must be reflected in `PROJECT_BACKLOG.md`, a deliberate "already current/not needed" decision, or an explicit approval blocker.
 
 ## Required Workflow
 
@@ -29,7 +32,9 @@ This file is the durable source for open work. Chat summaries, agent memory, and
 3. If it does not exist and the task involves a serious project, propose creating it before writing.
 4. For review/audit output, convert durable findings into backlog items.
 5. For implementation work, update related items to `In progress`, `Done`, `Dropped`, or leave them `Open` with notes.
-6. In the final response, include one compact backlog line:
+6. If implementation creates a new follow-up, caveat, degraded state, skipped scope, or known limitation, add it as a backlog item or append it to the related item.
+7. If a change completes an existing backlog item, record the completion commit/hash or explicit decision.
+8. In the final response, include one compact backlog line:
    - `Project backlog: updated`
    - `Project backlog: already current`
    - `Project backlog: not needed`

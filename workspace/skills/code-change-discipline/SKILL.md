@@ -39,6 +39,7 @@ The operator may approve individual numbers. Implement only approved numbers. If
 - Avoid unrelated refactors, metadata churn, generated artifacts, secrets, runtime state, and unrelated dirty files.
 - Confirm project path, intended files/areas, validation expectations, commit/push expectation, and restart expectation before acting when ambiguous.
 - Pause before secrets, `.env`, deletes, public exposure, production deploys, database/schema migrations, paid/external services, or long-running tasks.
+- For serious project work, check the project backlog before editing and keep it current as part of the same change. Add missing backlog items for discovered follow-ups, update active/completed item status, or record why no backlog change is needed.
 
 ## After Approved Implementation
 
@@ -46,7 +47,7 @@ The operator may approve individual numbers. Implement only approved numbers. If
 2. Use `github-change-discipline` for staging, commit, push, and remote verification.
 3. Rebuild/restart local services only when approved, safe, and clearly supported by the project.
 4. Update project notes or memory when the change materially affects future work.
-5. Use `project-backlog-discipline` for serious project work.
+5. Use `project-backlog-discipline` for serious project work. Do not report the work complete until the project backlog has been updated, verified already current, marked not needed with a reason, or blocked pending approval.
 6. Use `codex-limit-after-code-changes` before the final response.
 
 ## Final Report

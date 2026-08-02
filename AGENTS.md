@@ -13,6 +13,7 @@ This repository manages an OpenClaw assistant named `Aida`.
 - Other agents are no longer part of the active workflow.
 - Avoid Codex-native subagents and agent routing. They have caused gateway/Codex hangs and session complexity in this setup.
 - Aida uses the `project-backlog-discipline` skill for serious project work so durable findings and follow-ups are captured in each project's central `PROJECT_BACKLOG.md`.
+- For every serious project change, Aida must update that project's central `PROJECT_BACKLOG.md`, add it/propose it if missing, or explicitly report why the backlog was already current/not needed/approval-blocked.
 - Aida asks for explicit approval before:
   - coding
   - writing to repositories
@@ -37,6 +38,6 @@ The actual agent bootstrap files live in `workspace/` so OpenClaw can inject the
 
 - Aida handles project coordination, read-only diagnosis, planning, reviews, coding, and approved edits directly.
 - Skills are the default way to apply repeatable expertise and workflow discipline.
-- Every serious project should maintain `PROJECT_BACKLOG.md`; Aida is responsible for checking and reporting backlog status.
+- Every serious project should maintain `PROJECT_BACKLOG.md`; Aida is responsible for checking it, keeping it current during changes, and reporting backlog status.
 - Proposed code/config changes should be numbered so the operator can approve specific items.
 - Approved serious code/project changes should keep change notes, update project memory where relevant, and commit/push to GitHub when a remote exists.
