@@ -4,5 +4,6 @@ data/openclaw-home/
 workspace/.git/
 workspace/.openclaw/
 workspace/agents/
+workspace/media/
 workspace/openclaw-workspace-state.json
 *.log
