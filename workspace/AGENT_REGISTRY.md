@@ -1,6 +1,6 @@
 # Agent Registry
 
-This workspace uses durable OpenClaw agents for reusable personas. Aida remains the main Telegram-facing operator assistant and automatically dispatches specialized work to these agents when useful.
+This workspace keeps durable OpenClaw agent profiles for optional/manual specialist use. Aida remains the only active Telegram-facing operator assistant by default and uses skills as the standard way to apply repeatable workflow or domain procedures.
 
 ## Agents
 
@@ -26,14 +26,14 @@ This workspace uses durable OpenClaw agents for reusable personas. Aida remains 
 
 ## Dispatch Convention
 
-Aida is responsible for specialist routing. The operator talks to Aida; the operator does not need to explicitly ask for Victor, Noah, or any other registered agent.
+Aida is responsible for keeping the default workflow single-agent and stable. The operator talks to Aida. Specialist agents are not automatic routes.
 
-- Use `agentId: noah` for software development, code/repo review, implementation planning, architecture, debugging, refactors, reliability, APIs, tests, local rebuild/restart, deployment shape, and automation/agent engineering.
-- Use `agentId: victor` for trading strategy, market/risk/edge analysis, Magi trading reviews, paper/live readiness, risk model review, order gate logic, execution economics, portfolio/risk questions, and automated trading design.
-- If the operator explicitly names a registered agent, still dispatch by the durable `agentId` rather than relying on old session labels.
-- Avoid Codex-native subagent threads for specialist routing by default because they caused `lost`/`notFound`, stalled-session, and gateway/Codex app-server failures in this setup. Prefer durable OpenClaw `agentId` routing unless the operator explicitly approves the risk.
-- For mixed requests, Aida coordinates the relevant specialist first and then summarizes the outcome, proposed changes, approvals needed, and final status back to the operator.
-- For every specialist delegation, Aida must require short progress updates at least every 2 minutes when work runs longer than 2 minutes. If Victor, Noah, or any future specialist is silent beyond that cadence, Aida treats it as a timeout/control point, actively polls session/history/status, and updates the operator.
+- Use skills first for repeatable work such as project backlogs, GitHub changes, code review discipline, trading-review checklists, deployment procedures, and project memory.
+- Do not delegate to Noah, Victor, or any other specialist unless the operator explicitly approves that delegation for the current task.
+- If the operator explicitly names a registered agent and approves delegation, dispatch by the durable `agentId` rather than relying on old session labels.
+- Avoid Codex-native subagent threads and automatic specialist routing because they caused `lost`/`notFound`, stalled-session, gateway/Codex app-server failures, and unnecessary complexity in this setup.
+- For mixed requests, Aida coordinates directly and uses skills first. If specialist input would materially help, ask the operator before delegating.
+- For every operator-approved specialist delegation, Aida must require short progress updates at least every 2 minutes when work runs longer than 2 minutes. If Victor, Noah, or any future specialist is silent beyond that cadence, Aida treats it as a timeout/control point, actively polls session/history/status, and updates the operator.
 
 All specialists follow the same progress contract:
 
@@ -42,7 +42,7 @@ All specialists follow the same progress contract:
 - Send Aida a clear final report when complete, with verdict/result, evidence, risks, next recommendations, and any approval needed.
 - Mark backlog-worthy findings explicitly using the `project-backlog-discipline` convention: priority, why, risk/impact, next step, and dependencies.
 
-When Noah handles development work, Aida must enforce Noah's numbered change protocol:
+If Noah is explicitly approved for development work, Aida must enforce the numbered change protocol:
 
 - Noah proposes numbered, independently approvable changes before implementation.
 - Each number states what changes, why, risk/impact, dependencies, and validation.
@@ -55,15 +55,15 @@ When Noah handles development work, Aida must enforce Noah's numbered change pro
 - Aida treats Noah silence beyond the 2-minute progress cadence as a timeout/control point, actively polls Noah/session/Git/service status, and gives the operator a status update instead of waiting silently.
 - Aida verifies GitHub push status, prevents unrelated/secrets/runtime files from being included, updates central memory for serious changes, and reports memory/projectnotes status in the final operator-facing summary.
 
-For scheduled jobs, prefer cron payloads that explicitly name the target `agentId` and role. If a cron tool cannot run as that agent directly, Aida should dispatch to the agent by `agentId` and summarize the result.
+For scheduled jobs, prefer Aida-owned jobs that use skills. Do not schedule specialist-agent jobs unless the operator explicitly approves that route.
 
 ## Adding Future Agents
 
-When adding new specialists, keep the design scalable and boring:
+When adding new optional specialists, keep the design scalable and boring:
 
 - Add a durable OpenClaw agent with a stable `agentId`, separate workspace, identity, and role description.
 - Add the `agentId` to OpenClaw `tools.agentToAgent.allow` only after the operator approves that agent becoming callable.
 - Give each agent the least-privilege tool profile needed for its role; default analysis agents should not receive write/exec/deploy tools.
-- Keep Aida as the operator-facing coordinator. The operator should not need to manage direct specialist sessions.
+- Keep Aida as the operator-facing coordinator and default worker. The operator should not need to manage direct specialist sessions.
 - For implementation agents, require numbered proposals, explicit operator approval, validation, change notes, memory/project-note updates, and GitHub commit/push status.
-- Do not use Codex-native `subagents` or `sessions_spawn` as the default scaling mechanism. They share gateway/Codex runtime resources and have caused availability issues here.
+- Do not use Codex-native `subagents`, `sessions_spawn`, or automatic specialist routing as the default scaling mechanism. They share gateway/Codex runtime resources and have caused availability issues here.
